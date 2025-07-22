@@ -8,6 +8,7 @@ app.post("/webhook", (req, res) => {
     res.status(200).send("OK");
 });
 
-app.listen(3000, () => {
-    console.log("Bot çalışıyor: http://localhost:3000/webhook");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Bot çalışıyor: http://localhost:${PORT}/webhook`);
 });

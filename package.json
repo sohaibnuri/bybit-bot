@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "bybit-api-sdk": "^1.0.0"
+    "bybit-api": "^2.0.17"
   }
 }

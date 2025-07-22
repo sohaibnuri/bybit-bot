@@ -1,11 +1,14 @@
 {
   "name": "bybit-bot",
   "version": "1.0.0",
+  "description": "TradingView webhook to Bybit order bot",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "bybit-api": "^4.4.2"
   }
 }

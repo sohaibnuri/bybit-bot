@@ -1,15 +1,15 @@
 const express = require("express");
-const { RestClientV5 } = require('bybit-api');
+const { USDTPerpetualClient } = require("bybit-api");
 const app = express();
 app.use(express.json());
 
 const apiKey = process.env.api;
 const apiSecret = process.env.secret;
 
-const client = new RestClientV5({
+const client = new USDTPerpetualClient({
     key: apiKey,
     secret: apiSecret,
-    testnet: false, // testnet için true yapabilirsin
+    testnet: false // testnet için true yapabilirsin
 });
 
 app.post("/webhook", async (req, res) => {
@@ -17,14 +17,13 @@ app.post("/webhook", async (req, res) => {
     console.log("Webhook verisi:", data);
 
     try {
-        const response = await client.submitOrder({
-            category: "linear",
+        const response = await client.placeActiveOrder({
             symbol: data.symbol,
             side: data.side,
-            orderType: data.order_type,
-            qty: data.qty.toString(),
-            timeInForce: "GoodTillCancel",
-            leverage: data.leverage,
+            order_type: data.order_type,
+            qty: data.qty,
+            time_in_force: "GoodTillCancel",
+            leverage: data.leverage
         });
 
         console.log("Bybit cevabı:", response);
